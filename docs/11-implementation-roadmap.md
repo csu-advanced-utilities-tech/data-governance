@@ -16,7 +16,15 @@ subtitle: Phased plan for standing up data governance and filling the catalog.
 | 3. Roles & RACI | Named stewards per domain | [RACI]({{ '/12-stewardship-raci.html' | relative_url }}) signed off | _TODO_ | Not started |
 | 4. KPIs live | Baseline + targets reported | [KPIs]({{ '/13-kpis.html' | relative_url }}) tracked | _TODO_ | Not started |
 
-## Milestones & dependencies
+## Contract &amp; deployment context
+
+- The program runs under a **20-year Master Agreement with Landis+Gyr** (executed July 10, 2019).
+- Field deployment is **zone-based**: a zone reaches **Zone Acceptance** when ~99% of its equipment
+  is deployed, tested, and communicating with the head-end, then transitions to managed services.
+- CSU holds a **termination-for-SLA-failure right** if contracted service levels are missed for three
+  consecutive months — a backstop worth tracking against the [KPIs]({{ '/13-kpis.html' | relative_url }}).
+
+## Milestones &amp; dependencies
 
 _TODO: call out dependencies (e.g. catalog fill depends on DBA extract; KPIs depend on
 quality rules). Convert any relative dates to absolute dates._

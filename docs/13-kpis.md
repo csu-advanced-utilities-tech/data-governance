@@ -6,16 +6,34 @@ subtitle: How we measure data health and the success of the program.
 
 <span class="badge placeholder">Placeholder</span>
 
-## Data-health KPIs
+## Contracted SLAs (Landis+Gyr)
+
+These targets are committed in the Master Agreement and carry service credits if missed — they are
+the floor for our data-health KPIs.
+
+| Metric | Target | Owner |
+|---|---|---|
+| Monthly billing read availability | ≥ 99.5% | Landis+Gyr |
+| Daily meter read availability | ≥ 99.5% (monthly avg) | Landis+Gyr |
+| Interval read availability | ≥ 98.5% (monthly avg) | Landis+Gyr |
+| Head-end (Command Center) availability | ≥ 99.9% | Landis+Gyr |
+| Reconnect / disconnect success | ≥ 98% first attempt; ≥ 99% within 5 min | Landis+Gyr |
+| Demand reset success | ≥ 99.5% on Read Cycle Day | Landis+Gyr |
+| Network connectivity issue resolution | within 60 days (≥ 99%) | Landis+Gyr |
+| Recovery point / time objective | RPO ≤ 1 hr · RTO ≤ 24 hr | Landis+Gyr |
+
+## Data-health KPIs (CSU)
+
+CSU-side measures of trust in the data, layered on the SLAs above.
 
 | KPI | Definition | Source | Baseline | Target | Owner |
 |---|---|---|---|---|---|
-| Read completeness % | Reads received ÷ reads expected | INTERVALDATA vs. READ_SCHEDULE | _TODO_ | _TODO_ | _TODO_ |
+| Read completeness % | Reads received ÷ reads expected | INTERVALDATA vs. READ_SCHEDULE | _TODO_ | ≥ 99.5% (matches SLA) | _TODO_ |
 | Estimated read % | Estimated ÷ total reads | VEE flags | _TODO_ | _TODO_ | _TODO_ |
 | VEE exception rate | Exceptions ÷ total reads | Exception queue | _TODO_ | _TODO_ | _TODO_ |
 | Time-to-resolve exception | Avg. hours to clear an exception | Exception queue | _TODO_ | _TODO_ | _TODO_ |
 | Endpoint comms success % | Endpoints reporting on schedule | COLLECTORSTATS, ENDPOINTSTATUSCODEHISTORY | _TODO_ | _TODO_ | _TODO_ |
-| Data timeliness | % reads landed before billing window | BILLINGCYCLES | _TODO_ | _TODO_ | _TODO_ |
+| Data timeliness | % reads landed before billing window | BILLINGCYCLES | _TODO_ | ≥ 99.5% (matches SLA) | _TODO_ |
 
 ## Program KPIs
 

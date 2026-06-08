@@ -30,6 +30,25 @@ subtitle: Who is Responsible, Accountable, Consulted, and Informed.
 | Report KPIs | I | R | C | A | I |
 | _TODO: add CSU-specific activities_ | | | | | |
 
+## Vendor vs. CSU operational responsibilities (from the Master Agreement)
+
+The Master Agreement defines who runs what between **Landis+Gyr (vendor)** and **CSU**. This is the
+operational counterpart to the data-governance RACI above.
+
+| Activity | Landis+Gyr | CSU |
+|---|---|---|
+| Operate &amp; monitor the RF network; network maintenance / RMA | **R, A** | C, I |
+| Host, support &amp; maintain the Command Center head-end (SaaS) | **R, A** | C, I |
+| Deliver reads to CSU; data-delivery monitoring &amp; SLA reporting | **R, A** | C, I |
+| Endpoint install, replacement, or removal from service | C, I | **R, A** |
+| Make-ready work &amp; joint-use pole-attachment agreements | C, I | **R, A** |
+| Test &amp; approve system upgrades; CSU-side integration testing (MDMS) | C, I | **R, A** |
+| Resolve individual endpoint↔network connectivity issues | **R, A** | C, I |
+| Issue management, periodic reviews, strategic planning | **R, A** | C, I |
+
+> Full RACI tables (field network ops, endpoints, SaaS, application ops, data delivery, upgrades,
+> program management) live in the Master Agreement — see [Resources]({{ '/info/resources.html' | relative_url }}).
+
 ## Steward assignments by domain
 
 _TODO: fill from [Scope & Data Domains]({{ '/02-scope-and-domains.html' | relative_url }})

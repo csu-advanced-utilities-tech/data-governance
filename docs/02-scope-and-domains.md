@@ -4,16 +4,25 @@ title: 2. Scope & Data Domains
 subtitle: What we govern, what we don't, and how the data is organized into domains.
 ---
 
-<span class="badge placeholder">Placeholder</span>
+<span class="badge draft">Draft</span>
+
+## Program context
+
+The AMI program runs under a **20-year Master Agreement with Landis+Gyr** (executed 2019). It covers
+electric AMI meters and AMI-enabled gas and water modules, the Gridstream RF network, the
+**Command Center** head-end, and managed services. That contract scopes much of what we govern here.
 
 ## In scope
 
-_TODO: e.g. all data persisted in the Command Center database; the metadata catalog;
-VEE/quality rules applied to that data._
+- All data persisted in the **Command Center** head-end database (the [Data Dictionary](https://csu-advanced-utilities-tech.github.io/command-center-data-catalog/index.html) documents it).
+- Reads delivered to CSU (billing, daily, interval) via the Smart Grid Gateway into the **MDMS**.
+- The metadata catalog and the VEE / data-quality rules applied to that data.
 
 ## Out of scope (for now)
 
-_TODO: e.g. downstream billing system internals, GIS, customer CRM — note interfaces only._
+- Downstream **billing / CIS** internals (interfaces only).
+- **GIS** internals (referenced by [M2T]({{ '/08-data-quality-framework.html' | relative_url }}), governed elsewhere).
+- Vendor-internal head-end implementation (Landis+Gyr managed service).
 
 ## Data domains
 

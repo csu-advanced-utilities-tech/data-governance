@@ -35,8 +35,16 @@ subtitle: Technical and data terms used across this site, in plain English.
 |---|---|
 | **Data governance** | The agreed rules and roles for keeping data accurate, secure, well-understood, and trusted. The purpose of this Hub. |
 | **AMI** | Advanced Metering Infrastructure — the smart meters, network, and systems that collect usage data automatically. |
-| **Command Center** | The system that is our system of record for AMI meter, endpoint, and reading data. |
-| **Endpoint / Meter / Collector** | The field devices: meters measure usage, endpoints communicate, collectors relay the data back to the Command Center. |
+| **Command Center** | The **head-end system (HES)** for our AMI program — Landis+Gyr's control software that collects, commands, and stores meter/endpoint data. It is hosted by the vendor and is our system of record. The Data Catalog documents its database. |
+| **Landis+Gyr** | Our AMI vendor (Landis+Gyr Technology, Inc.). Under a 2019 Master Agreement they provide the meters, network, the Command Center head-end, and managed services. |
+| **Head-End System (HES)** | The central software that talks to all the meters — collects reads, sends commands, and hands data downstream. For us, the HES is Command Center. |
+| **Gridstream** | Landis+Gyr's AMI communications network (the radio-frequency mesh, often using the Wi-SUN standard) that carries data between meters and the head-end. |
+| **Wi-SUN** | An open wireless standard for utility field-area networks; the radio protocol the AMI mesh uses to backhaul meter data. |
+| **Endpoint / Meter / Collector** | The field devices: meters measure usage, endpoints communicate, collectors/routers/gateways relay the data back to the head-end. |
+| **MDMS (Meter Data Management System)** | CSU's system that stores and manages validated meter reads and produces billing determinants; it receives data from the head-end via the Smart Grid Gateway. |
+| **Smart Grid Gateway** | CSU's integration layer that receives meter data from the Command Center head-end and feeds it into CSU systems (e.g. the MDMS). |
+| **SLA (Service Level Agreement)** | A contracted performance commitment (e.g. "99.5% of billing reads delivered on time"), often with service credits if missed. Our SLAs live in the Master Agreement. |
+| **CORA** | Colorado Open Records Act — the public-records law CSU is subject to, which shapes how confidential contract and customer information is handled. |
 | **Metadata** | "Data about the data" — e.g. a table's purpose, or what a column means. The Catalog is essentially organized metadata. |
 | **Data dictionary** | A reference listing every table and column and what it means. That's the Catalog. |
 | **Data domain** | A grouping of related data by business area (e.g. "Endpoints & Meters", "Plans & Schedules"). |

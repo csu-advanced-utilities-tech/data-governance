@@ -29,9 +29,29 @@ process. Detailed rule definitions live in the
 [Data-Quality Framework]({{ '/08-data-quality-framework.html' | relative_url }});
 this page governs *where in the lifecycle* each control applies and who owns it.
 
-## Retention & disposition
+## Data-delivery timing &amp; SLAs (from the Master Agreement)
 
-_TODO: retention periods per data class; archival and purge triggers; legal-hold handling._
+These are the contracted delivery commitments from Landis+Gyr; the data-quality dimensions above
+sit on top of them.
+
+| Data set | Delivered by | Availability target (SLA) |
+|---|---|---|
+| Monthly billing reads | Electric 5:00 a.m. / gas &amp; water 7:00 a.m. on the Read Cycle Day | ≥ 99.5% |
+| Daily meter reads | Electric 5:00 a.m. / gas &amp; water 7:00 a.m. each day | ≥ 99.5% (monthly avg) |
+| Interval reads (5/15/30/60-min) | Same windows | ≥ 98.5% (monthly avg) |
+
+- **Billing Window:** the three calendar days before the Read Cycle Day; a read is "available" if
+  delivered within that window.
+- Data flows HES → CSU **Smart Grid Gateway** → **MDMS** (see
+  [OT/IT Landscape]({{ '/05-ot-it-landscape.html' | relative_url }})). Targets are tracked as
+  [KPIs]({{ '/13-kpis.html' | relative_url }}).
+
+## Retention &amp; disposition
+
+- **At the head-end:** the last **180 days** of daily/interval reads are available on a rolling basis.
+- **Contract records:** billing-related records are retained for **5 years** (audit provision).
+- _TODO: CSU MDMS retention periods per data class; archival and purge triggers (link to
+  `DATABASE_MAINT_ARCHIVE`); legal-hold handling._
 
 ---
 

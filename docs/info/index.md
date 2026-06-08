@@ -79,4 +79,8 @@ The whole loop usually takes a minute or two after a change is approved.
     <h3>Glossary →</h3>
     <p>Tech terms (GitHub, repository, Markdown, pull request…) in plain English.</p>
   </a>
+  <a class="card" href="{{ '/info/resources.html' | relative_url }}">
+    <h3>Resources &amp; References →</h3>
+    <p>The source documents behind this hub — summarized, with links to read more.</p>
+  </a>
 </div>

@@ -90,6 +90,7 @@ Each section page carries a status badge:
 
 The **[Information Portal]({{ '/info/index.html' | relative_url }})** explains — in plain
 language — how this site is built and hosted, [how to contribute]({{ '/info/contributing.html' | relative_url }})
-(no coding required), an [FAQ]({{ '/info/faq.html' | relative_url }}), and a
-[Glossary]({{ '/info/glossary.html' | relative_url }}) of terms. It's the best place to start
-if you're new to GitHub.
+(no coding required), an [FAQ]({{ '/info/faq.html' | relative_url }}), a
+[Glossary]({{ '/info/glossary.html' | relative_url }}) of terms, and the
+[Resources &amp; References]({{ '/info/resources.html' | relative_url }}) library behind this hub.
+It's the best place to start if you're new to GitHub.
