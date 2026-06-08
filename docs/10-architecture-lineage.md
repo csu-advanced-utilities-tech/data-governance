@@ -16,28 +16,28 @@ Reflects the actual CSU / Landis+Gyr architecture (see
 
 ```mermaid
 flowchart LR
-  subgraph FIELD[Field - OT]
-    M[Meters & Endpoints<br/>electric / gas / water]
-    NET[Gridstream RF mesh<br/>Wi-SUN: collectors, routers, gateways]
+  subgraph FIELD["Field (OT)"]
+    M["Meters and Endpoints<br/>electric, gas, water"]
+    NET["Gridstream RF mesh (Wi-SUN)<br/>collectors, routers, gateways"]
   end
-  subgraph VENDOR[Landis+Gyr - hosted]
-    HES[(Command Center<br/>Head-End System)]
+  subgraph VENDOR["Landis+Gyr (hosted)"]
+    HES[("Command Center<br/>Head-End System")]
   end
-  subgraph CSU[CSU - IT]
-    SGG[Smart Grid Gateway]
-    MDMS[(MDMS<br/>validated reads)]
-    BILL[Billing / CIS]
+  subgraph CSUZONE["CSU (IT)"]
+    SGG["Smart Grid Gateway"]
+    MDMS[("MDMS<br/>validated reads")]
+    BILL["Billing / CIS"]
   end
-  M -->|reads, events, voltage| NET
+  M -->|"reads, events, voltage"| NET
   NET -->|backhaul| HES
-  HES -->|reads daily / interval / billing| SGG
+  HES -->|"reads: daily, interval, billing"| SGG
   SGG --> MDMS
   MDMS -->|VEE| Q{Validated?}
   Q -->|yes| BILL
-  Q -->|no| EX[Exception queue]
-  EX -->|estimate / edit / field visit| MDMS
-  CSU -.commands: reconnect/disconnect, demand reset.-> HES
-  M -.voltage.-> M2T[M2T voltage analytics]
+  Q -->|no| EX["Exception queue"]
+  EX -->|"estimate, edit, field visit"| MDMS
+  SGG -.->|"commands: reconnect, demand reset"| HES
+  M -.->|voltage| M2T["M2T voltage analytics"]
 ```
 
 ## Domain entity relationships
