@@ -7,7 +7,7 @@ subtitle: Governance, lineage, quality, and stewardship for the Command Center m
 This hub is the single source of truth for how the Command Center meter-data program is
 governed — who owns what, how data flows and is validated, and how we measure success.
 The live **Data Dictionary** is maintained in the
-[command-center-data-catalog]({{ "https://csu-advanced-utilities-tech.github.io/command-center-data-catalog/index.html" }}) site and linked from the navigation. The **Code Catalog** is a separate upcoming effort.
+[command-center-data-catalog]({{ "https://csu-advanced-utilities-tech.github.io/command-center-data-catalog/index.html" }}) site and linked from the navigation. The **Code Catalog** is a growing library of reusable SQL queries for that database.
 
 <div class="cards">
 
@@ -43,7 +43,7 @@ The live **Data Dictionary** is maintained in the
 
   <a class="card" href="{{ '/07-code-catalog.html' | relative_url }}">
     <div class="card-num">07</div><h3>Code Catalog</h3>
-    <p>Status, command, and event code reference — a separate upcoming effort.</p>
+    <p>Reusable SQL queries and snippets for the Command Center database.</p>
   </a>
 
   <a class="card" href="{{ '/08-data-quality-framework.html' | relative_url }}">
