@@ -1,0 +1,15 @@
+# Jekyll
+docs/_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+
+# Ruby / Bundler (local preview)
+.bundle/
+vendor/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/

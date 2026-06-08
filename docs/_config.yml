@@ -1,0 +1,10 @@
+title: CSU Advanced Utilities — Data Governance
+description: Governance hub for the Command Center meter-data program.
+baseurl: "/data-governance"
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+# No remote theme — the site uses the layouts in _layouts/ and assets/styles.css.
+exclude:
+  - README.md

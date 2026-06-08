@@ -1,0 +1,47 @@
+# Left-sidebar navigation. Order here = order on the site.
+# `external: true` opens the link in a new tab and skips baseurl rewriting
+# (used for the live Data Dictionary / Code Catalog in the catalog repo).
+
+- title: Home
+  url: /index.html
+
+- title: 1. Executive Summary
+  url: /01-executive-summary.html
+
+- title: 2. Scope & Data Domains
+  url: /02-scope-and-domains.html
+
+- title: 3. Governance Operating Model
+  url: /03-governance-operating-model.html
+
+- title: 4. Meter-Data Lifecycle
+  url: /04-meter-data-lifecycle.html
+
+- title: 5. OT/IT Landscape
+  url: /05-ot-it-landscape.html
+
+- title: 6. Data Dictionary ↗
+  url: https://csu-advanced-utilities-tech.github.io/command-center-data-catalog/index.html
+  external: true
+
+- title: 7. Code Catalog ↗
+  url: https://csu-advanced-utilities-tech.github.io/command-center-data-catalog/index.html
+  external: true
+
+- title: 8. Data-Quality Framework
+  url: /08-data-quality-framework.html
+
+- title: 9. Security & Compliance
+  url: /09-security-compliance.html
+
+- title: 10. Architecture & Lineage
+  url: /10-architecture-lineage.html
+
+- title: 11. Implementation Roadmap
+  url: /11-implementation-roadmap.html
+
+- title: 12. Stewardship & RACI
+  url: /12-stewardship-raci.html
+
+- title: 13. KPIs & Metrics
+  url: /13-kpis.html
