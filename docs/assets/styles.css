@@ -97,6 +97,17 @@ body {
   font-weight: 600;
 }
 
+.sidebar li.nav-header {
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 18px 22px 6px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 .content {
   flex: 1 1 auto;
   padding: 32px 40px 64px;

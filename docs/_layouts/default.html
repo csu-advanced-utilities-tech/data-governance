@@ -16,7 +16,9 @@
     <nav class="sidebar" aria-label="Sections">
       <ul>
         {% for item in site.data.nav %}
-          {% if item.external %}
+          {% if item.header %}
+            <li class="nav-header">{{ item.title }}</li>
+          {% elsif item.external %}
             <li><a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a></li>
           {% else %}
             <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} class="active"{% endif %}>{{ item.title }}</a></li>

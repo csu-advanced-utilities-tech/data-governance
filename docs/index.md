@@ -86,8 +86,10 @@ Each section page carries a status badge:
 <span class="badge review">In review</span>
 <span class="badge approved">Approved</span>
 
-## How to contribute
+## New here? Start with the Information Portal
 
-See the [repository README](https://github.com/csu-advanced-utilities-tech/data-governance#readme).
-Edit the Markdown file for a section, open a pull request, and GitHub Pages rebuilds the
-site automatically on merge to `main`.
+The **[Information Portal]({{ '/info/index.html' | relative_url }})** explains — in plain
+language — how this site is built and hosted, [how to contribute]({{ '/info/contributing.html' | relative_url }})
+(no coding required), an [FAQ]({{ '/info/faq.html' | relative_url }}), and a
+[Glossary]({{ '/info/glossary.html' | relative_url }}) of terms. It's the best place to start
+if you're new to GitHub.

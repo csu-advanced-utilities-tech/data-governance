@@ -44,3 +44,18 @@
 
 - title: 13. KPIs & Metrics
   url: /13-kpis.html
+
+- title: About this site
+  header: true
+
+- title: ℹ️ Information Portal
+  url: /info/index.html
+
+- title: How to Contribute
+  url: /info/contributing.html
+
+- title: FAQ
+  url: /info/faq.html
+
+- title: Glossary
+  url: /info/glossary.html
