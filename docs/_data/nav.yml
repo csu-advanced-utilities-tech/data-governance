@@ -24,9 +24,8 @@
   url: https://csu-advanced-utilities-tech.github.io/command-center-data-catalog/index.html
   external: true
 
-- title: 7. Code Catalog ↗
-  url: https://csu-advanced-utilities-tech.github.io/command-center-data-catalog/index.html
-  external: true
+- title: 7. Code Catalog
+  url: /07-code-catalog.html
 
 - title: 8. Data-Quality Framework
   url: /08-data-quality-framework.html
