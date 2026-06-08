@@ -23,7 +23,8 @@ subtitle: How we measure data health and the success of the program.
 |---|---|---|
 | Catalog coverage % | Tables/columns documented ÷ total | _TODO_ |
 | Domains with named steward | Count ÷ total domains | _TODO_ |
-| Governed rules published | VEE + M2T rules in register | _TODO_ |
+| VEE rules published | Rules in the VEE register | _TODO_ |
+| M2T mappings validated % | Meter-to-transformer mappings confirmed or corrected via M2T ÷ total | _TODO_ |
 
 ## Reporting cadence
 

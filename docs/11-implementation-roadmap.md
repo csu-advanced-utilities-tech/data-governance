@@ -12,7 +12,7 @@ subtitle: Phased plan for standing up data governance and filling the catalog.
 |---|---|---|---|---|
 | 0. Foundation | Hub + catalog stood up | This site live; catalog rendering | _TODO_ | In progress |
 | 1. Catalog fill | Document the 51 tables | Table + column descriptions, owners | _TODO_ | Not started |
-| 2. Quality rules | Publish VEE + M2T register | [Data-Quality]({{ '/08-data-quality-framework.html' | relative_url }}) populated | _TODO_ | Not started |
+| 2. Quality rules | Publish VEE register; integrate M2T validation | [Data-Quality]({{ '/08-data-quality-framework.html' | relative_url }}) populated | _TODO_ | Not started |
 | 3. Roles & RACI | Named stewards per domain | [RACI]({{ '/12-stewardship-raci.html' | relative_url }}) signed off | _TODO_ | Not started |
 | 4. KPIs live | Baseline + targets reported | [KPIs]({{ '/13-kpis.html' | relative_url }}) tracked | _TODO_ | Not started |
 

@@ -22,7 +22,8 @@ subtitle: Who is Responsible, Accountable, Consulted, and Informed.
 | Activity | Data Owner | Steward | Custodian (DBA) | Governance Council | Consumer |
 |---|---|---|---|---|---|
 | Define table/column metadata | A | R | C | I | C |
-| Approve a new VEE / M2T rule | A | R | C | C | I |
+| Approve a new VEE rule | A | R | C | C | I |
+| Accept an M2T mapping correction & update GIS | A | R | C | I | I |
 | Grant/revoke data access | A | C | R | I | I |
 | Resolve a data-quality exception | I | R | C | I | I |
 | Approve schema change | A | C | R | C | I |

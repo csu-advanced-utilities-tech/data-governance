@@ -41,7 +41,8 @@ subtitle: Technical and data terms used across this site, in plain English.
 | **Data dictionary** | A reference listing every table and column and what it means. That's the Catalog. |
 | **Data domain** | A grouping of related data by business area (e.g. "Endpoints & Meters", "Plans & Schedules"). |
 | **VEE** | Validation, Estimation, Editing — the standard process for checking and correcting meter reads before they're used. |
-| **M2T** | A specific CSU meter-data rule/stipulation, documented in the Data-Quality Framework section *(definition to be confirmed)*. |
+| **M2T (Meter-to-Transformer)** | A CSU project that uses AMI meter voltage data to build voltage "signature" shapes, then correlation and clustering to group meters by likely transformer — and compares the result to the GIS map to confirm or recommend corrections to which transformer each meter is mapped to. |
+| **GIS** | Geographic Information System — the mapping system that records the electric network's physical layout, including which meters connect to which transformers. M2T checks this map against AMI data. |
 | **Lineage** | The traceable path data takes from its source through transformations to where it's used. |
 | **Data steward** | The person responsible day-to-day for a domain's data quality and definitions. |
 | **Data owner** | The person accountable for a domain's data and who approves access to it. |
