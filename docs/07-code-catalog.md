@@ -32,7 +32,7 @@ Handy IDs used in the filters below (confirm against the Data Dictionary):
 
 ## Query library
 
-<details>
+<details markdown="1">
 <summary>Meters &amp; Endpoints — status, model, service location</summary>
 
 Returns one row per endpoint with meter number, status, model, service location, and DCW version.
@@ -54,9 +54,10 @@ LEFT JOIN centralservices.SERVICELOCATIONS    ON METERS.servicelocationid = SERV
 LEFT JOIN centralservices.ENDPOINTMODELS      ON ENDPOINTS.hwmodelid  = ENDPOINTMODELS.endpointmodelid
 JOIN      centralservices.RFENDPOINTPROPERTIES ON ENDPOINTS.endpointid = RFENDPOINTPROPERTIES.endpointid;
 ```
+
 </details>
 
-<details>
+<details markdown="1">
 <summary>Meters &amp; Collectors — with latitude &amp; longitude</summary>
 
 Returns each meter, its collector, status, last billable read, and GPS coordinates.
@@ -76,9 +77,10 @@ JOIN      centralservices.STATUSCODES      ON ENDPOINTS.statuscodeid = STATUSCOD
 LEFT JOIN centralservices.SERVICELOCATIONS ON SERVICELOCATIONS.servicelocationid = METERS.servicelocationid
 LEFT JOIN centralservices.GPSLOCATIONS     ON SERVICELOCATIONS.gpslocationid = GPSLOCATIONS.gpslocationid;
 ```
+
 </details>
 
-<details>
+<details markdown="1">
 <summary>Self-read count — days with good reads per meter (last 10 days)</summary>
 
 Counts the number of days each Normal meter returned a published kWh self-read in the last 10 days.
@@ -97,9 +99,10 @@ GROUP BY METERS.meterno
 HAVING COUNT(IDREADINGLOGS.readingdate) >= 5
 ORDER BY METERS.meterno;
 ```
+
 </details>
 
-<details>
+<details markdown="1">
 <summary>Interval data — count of intervals per meter (yesterday)</summary>
 
 Counts interval (load-profile) reads per meter for the previous day. 96 = a full day of 15-minute kWh.
@@ -120,9 +123,10 @@ GROUP BY METERS.meterno, PACKETTYPES.name;
 ```
 
 _Note: the original L+G example joined ENDPOINTS on `endpointid = meterid`; corrected here to `ENDPOINTS.meterid = METERS.meterid`._
+
 </details>
 
-<details>
+<details markdown="1">
 <summary>Commands &amp; response — what was sent and how it responded</summary>
 
 Returns commands issued, who issued them, when sent/completed, and the response status.
@@ -144,9 +148,10 @@ JOIN      centralservices.COMMANDTYPES       ON COMMANDTYPES.commandtypeid = COM
 LEFT JOIN centralservices.COMMANDSSENT       ON COMMANDSSENT.commandlogid = COMMANDLOG.commandlogid
 LEFT JOIN centralservices.COMMANDSTATUSCODES ON COMMANDSTATUSCODES.commandstatuscodeid = COMMANDSSENT.commandstatuscodeid;
 ```
+
 </details>
 
-<details>
+<details markdown="1">
 <summary>Events &amp; errors — event summary (last 2 days)</summary>
 
 Summarizes events by type over the last two days, with first/last occurrence and distinct meters affected.
@@ -167,9 +172,10 @@ WHERE EVENTLOG.eventdate >= TRUNC(SYSDATE) - 2
 GROUP BY EVENTLOG.eventtypeid, EVENTTYPES.name
 ORDER BY COUNT(*) DESC;
 ```
+
 </details>
 
-<details>
+<details markdown="1">
 <summary>Meter configuration — program, firmware, model, interval length</summary>
 
 Returns the program, firmware, model, and interval length for electric meters.
@@ -187,6 +193,7 @@ LEFT JOIN centralservices.ENDPOINTMETERCONFIGURATION ON ENDPOINTS.endpointid = E
 LEFT JOIN centralservices.METERCONFIGURATION ON ENDPOINTMETERCONFIGURATION.meterconfigurationid = METERCONFIGURATION.meterconfigurationid
 WHERE METERS.metertypeid = 1;   -- electric
 ```
+
 </details>
 
 > **Performance tip:** `COMMANDLOG`, `EVENTLOG`, `IDREADINGLOGS`, and `INTERVALDATA` are very large
@@ -196,22 +203,24 @@ WHERE METERS.metertypeid = 1;   -- electric
 
 ## Contributing a query
 
-Add your query to this page (edit `docs/07-code-catalog.md`) using the same pattern:
+Add your query to this page (edit `docs/07-code-catalog.md`) using the same pattern — note the
+`markdown="1"` on the `<details>` tag (it lets the SQL block render) and the blank lines around the code:
 
-```text
-<details>
+````text
+<details markdown="1">
 <summary>Short title — what it returns</summary>
 
 One or two sentences on what it does and any parameters.
 
-​```sql
+```sql
 SELECT ...
-​```
-</details>
 ```
 
-Include: a clear title, what it returns, any parameters/filters to adjust, and call out tables
-that are large or sensitive. See [How to Contribute]({{ '/info/contributing.html' | relative_url }}).
+</details>
+````
+
+Include: a clear title, what it returns, any parameters/filters to adjust, and call out tables that
+are large or sensitive. See [How to Contribute]({{ '/info/contributing.html' | relative_url }}).
 
 ---
 
