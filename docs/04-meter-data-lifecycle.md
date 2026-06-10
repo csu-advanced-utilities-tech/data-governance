@@ -4,7 +4,7 @@ title: 4. Meter-Data Lifecycle Governance
 subtitle: Governance controls at each stage from meter to archive.
 ---
 
-<span class="badge placeholder">Placeholder</span>
+<span class="badge draft">Draft</span>
 
 > The lifecycle is the backbone of this hub: every quality rule, control, and KPI attaches
 > to one of these stages.
@@ -45,6 +45,39 @@ sit on top of them.
 - Data flows HES → CSU **Smart Grid Gateway** → **MDMS** (see
   [OT/IT Landscape]({{ '/05-ot-it-landscape.html' | relative_url }})). Targets are tracked as
   [KPIs]({{ '/13-kpis.html' | relative_url }}).
+
+## Daily file-extract &amp; transfer schedule
+
+Reads and billing files are pulled from Command Center / the AMI head end on an automated daily
+schedule and delivered downstream (billing document server and the
+[Consumer Portal]({{ '/10-architecture-lineage.html' | relative_url }}) via SFTP). The schedule
+below is from the file-transfer scheduler; statuses are a sample run (they reset each day).
+
+**Legend:** *EGW* = electric/gas/water interval files · *Scalar* = cumulative register reads ·
+*CMEP* = Common Meter Export Protocol (AMR interval) · *AMRLSF* = AMR load/scalar file.
+
+| Trigger | Job | Type | Sample status |
+|---|---|---|---|
+| 1:10 AM | AMI EGW Interval File Get (12 AM) | Interval | Completed |
+| 3:20 AM | AMI Electric Scalar File Get (1 AM) | Scalar | Completed |
+| 4:20 AM | AMI Electric Scalar File Get (3 AM) | Scalar | Completed |
+| 5:20 AM | AMI EGW Interval File Get (4 AM) | Interval | Completed |
+| 6:30 AM | AMI Electric Scalar File Get (5 AM) | Scalar | Completed |
+| ~6 AM | AMI W (water) Scalar File Get (6 AM) | Scalar | Completed |
+| 7:20 AM | AMR billing upload → Doc Server (external) | Billing | Completed |
+| 8:20 AM | AMI EG Scalar File Get (7 AM) | Scalar | Completed |
+| ~8 AM | AMI Event File Get (8 AM) | Events | Completed |
+| 9:20 AM | AMI EGW Interval File Get (8 AM) | Interval | Completed |
+| 10:24 AM | AMI Electric Scalar File Get (9 AM) | Scalar | Completed |
+| 11:20 AM | Daily Reads (AMR Scalar) Get (10 AM); AMI Electric Scalar (11 AM); AMR billing upload | Scalar / Billing | Completed |
+| 12:33 PM | CM-AMRLSF File Get; CMEP (AMR Interval) Get; AMI EGW Interval File Get (12 PM) | Scalar / Interval | Completed → waiting |
+| 4:35 PM | AMI EGW Interval File Get (4 PM) | Interval | Waiting on dependencies |
+| 8:20 PM | AMI EGW Interval File Get (8 PM) | Interval | Waiting on dependencies |
+
+> **Pattern:** interval files (EGW) run roughly every 4 hours (12 AM, 4 AM, 8 AM, 12 PM, 4 PM, 8 PM);
+> scalar/register files run hourly through the morning; billing uploads run mid-morning. A failed or
+> late **Get** here is a completeness risk — tie it to the
+> [data-timeliness KPI]({{ '/13-kpis.html' | relative_url }}). _TODO: confirm scheduler/tool and owner._
 
 ## Retention &amp; disposition
 

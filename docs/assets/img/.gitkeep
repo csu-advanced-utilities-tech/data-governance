@@ -1,0 +1,6 @@
+# Place publicly-shareable diagram images here (PNG/SVG) so pages can embed them.
+# Example: ai-hosted-sftp-diagram.png  and  ami-daily-file-schedule.png
+# Reference from a page with:  ![Alt text]({{ '/assets/img/your-image.png' | relative_url }})
+#
+# The same diagrams are also maintained as text-based Mermaid in
+# 10-architecture-lineage.md and 04-meter-data-lifecycle.md.

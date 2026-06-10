@@ -40,6 +40,53 @@ flowchart LR
   M -.->|voltage| M2T["M2T voltage analytics"]
 ```
 
+## Consumer Portal integration (Accelerated Innovations / SFTP)
+
+How CSU customer and meter data reaches the customer-facing **Consumer Portal** (hosted by
+Accelerated Innovations) over **Secure FTP (port 22)**, through firewalls on both sides.
+
+```mermaid
+flowchart TB
+  CUST["Customers<br/>web & mobile app"]
+  subgraph AI["Accelerated Innovations (hosted)"]
+    WEB["Consumer Portal<br/>Web Server"]
+    API["Consumer Portal<br/>API Server"]
+    SFTP["SFTP<br/>(Secure FTP, port 22)"]
+    DAQ["Consumer Portal<br/>Data Acquisition Service"]
+    PFW["Portal Database<br/>Firewall"]
+    PDB[("Consumer Portal<br/>Database Server")]
+  end
+  subgraph UTIL["CSU (utility)"]
+    UFW["Utility Firewall"]
+    CIS["CIS System"]
+    HE["AMI Head End"]
+    CC[("Command Center<br/>(USC / MV-90 exports)")]
+  end
+  CUST --> WEB
+  CUST --> API
+  WEB <--> PFW
+  API <--> PFW
+  PFW <--> PDB
+  DAQ --> PDB
+  SFTP --> DAQ
+  UFW -->|"Secure FTP port 22<br/>CIM / MultiSpeak / files"| SFTP
+  CIS -->|"Customer Data<br/>(DB sync file)"| UFW
+  HE --> CC
+  CC -->|"Daily Reads &amp; Interval Data<br/>(MV-90)"| UFW
+```
+
+**Data sources feeding the portal:**
+
+| Source | Data | Format / tool |
+|---|---|---|
+| CIS System | Customer data (accounts, names, addresses) | DB sync file |
+| AMI Head End → Command Center | Daily (scalar) reads | USC / MV-90 |
+| AMI Head End → Command Center | Interval data | MV-90 |
+
+> The vendor can support **either a customer-hosted SFTP or an AI-hosted SFTP** endpoint. The
+> file-transfer cadence is documented in
+> [Meter-Data Lifecycle]({{ '/04-meter-data-lifecycle.html' | relative_url }}).
+
 ## Domain entity relationships
 
 _TODO: confirm against the catalog's `metadata/relationships.csv`._

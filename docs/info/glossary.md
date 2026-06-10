@@ -56,5 +56,12 @@ subtitle: Technical and data terms used across this site, in plain English.
 | **Data owner** | The person accountable for a domain's data and who approves access to it. |
 | **RACI** | A chart of who is **R**esponsible, **A**ccountable, **C**onsulted, and **I**nformed for each activity. |
 | **KPI** | Key Performance Indicator — a metric we track to measure data health or program success. |
+| **Consumer Portal (Accelerated Innovations)** | The customer-facing web/mobile portal, hosted by vendor Accelerated Innovations, where customers view their energy usage; fed CSU data over SFTP. |
+| **SFTP** | Secure File Transfer Protocol (port 22) — the encrypted channel that moves customer and meter files from CSU to the Consumer Portal. |
+| **CIS (Customer Information System)** | CSU's system of customer accounts and billing info; the source of customer data (names, addresses) shared with the portal. |
+| **MV-90** | An interval meter-data collection/translation system used to extract interval reads from Command Center into files. |
+| **CMEP** | Common Meter Export Protocol — a standard file format for exporting (AMR) interval meter data. |
+| **MultiSpeak / CIM** | Common utility data-exchange standards (MultiSpeak; Common Information Model) used as file/message formats between systems. |
+| **Scalar vs. interval read** | A scalar (register) read is a cumulative total (e.g., total kWh); an interval read is usage within a fixed window (e.g., 15 minutes). |
 
 Missing a term? Add it via [How to Contribute]({{ '/info/contributing.html' | relative_url }}) or open an Issue.
