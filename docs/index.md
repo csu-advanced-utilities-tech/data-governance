@@ -48,7 +48,7 @@ The live **Data Dictionary** is maintained in the
 
   <a class="card" href="{{ '/08-data-quality-framework.html' | relative_url }}">
     <div class="card-num">08</div><h3>Data-Quality Framework</h3>
-    <p>VEE rules, Meter-to-Transformer (M2T) validation, and quality dimensions.</p>
+    <p>VEE rules, the MMM monitoring register, M2T validation, and quality dimensions.</p>
   </a>
 
   <a class="card" href="{{ '/09-security-compliance.html' | relative_url }}">

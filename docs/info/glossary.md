@@ -63,5 +63,10 @@ subtitle: Technical and data terms used across this site, in plain English.
 | **CMEP** | Common Meter Export Protocol — a standard file format for exporting (AMR) interval meter data. |
 | **MultiSpeak / CIM** | Common utility data-exchange standards (MultiSpeak; Common Information Model) used as file/message formats between systems. |
 | **Scalar vs. interval read** | A scalar (register) read is a cumulative total (e.g., total kWh); an interval read is usage within a fixed window (e.g., 15 minutes). |
+| **MMM** | CSU's daily meter-monitoring exception report — coded rules (NVM, STL, DIV, etc.) that flag meters with data or device problems for investigation. See the [Data-Quality Framework]({{ '/08-data-quality-framework.html' | relative_url }}). *(Acronym to be confirmed.)* |
+| **SPID** | An endpoint's collector/SPU association; "has SPID" means the meter is assigned to a collector and on the network. *(Confirm exact meaning.)* |
+| **WOP (In Work Order Process)** | Flag on an MMM rule indicating it is active in production and can generate a work order. |
+| **dbsync** | The CIS DB-sync file — customer/meter data synced from the Customer Information System; some MMM rules cross-check it. |
+| **DIV** | The MMM theft-detection rule: flags disconnected meters still drawing load-side voltage, or "no-usage" meters that suddenly read — replacing the older ECO rule. |
 
 Missing a term? Add it via [How to Contribute]({{ '/info/contributing.html' | relative_url }}) or open an Issue.
