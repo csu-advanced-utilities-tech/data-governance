@@ -6,5 +6,13 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 # No remote theme — the site uses the layouts in _layouts/ and assets/styles.css.
+
+# Access gate (deterrent only). SHA-256 hash of the shared access password.
+# To change the password, generate a new hash and replace the value below:
+#   PowerShell: [BitConverter]::ToString((New-Object System.Security.Cryptography.SHA256Managed).ComputeHash([Text.Encoding]::UTF8.GetBytes("YOURPASSWORD"))).Replace('-','').ToLower()
+#   Browser console: crypto.subtle.digest('SHA-256', new TextEncoder().encode('YOURPASSWORD')).then(b=>console.log([...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')))
+# Starter password: CSUdata2026  (CHANGE THIS)
+gate_hash: "863008d1bad2456b0b5c8abf04dae82c1e636ba89f5c876fa5daf2daaac91d6a"
+
 exclude:
   - README.md

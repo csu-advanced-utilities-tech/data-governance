@@ -7,46 +7,103 @@
   <link rel="stylesheet" href="{{ '/assets/styles.css' | relative_url }}">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="{{ '/index.html' | relative_url }}">CSU Advanced Utilities — Data Governance</a>
-    <span class="brand-sub">Command Center meter-data program</span>
-  </header>
 
-  <div class="layout">
-    <nav class="sidebar" aria-label="Sections">
-      <ul>
-        {% for item in site.data.nav %}
-          {% if item.header %}
-            <li class="nav-header">{{ item.title }}</li>
-          {% elsif item.external %}
-            <li><a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a></li>
-          {% else %}
-            <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} class="active"{% endif %}>{{ item.title }}</a></li>
-          {% endif %}
-        {% endfor %}
-      </ul>
-    </nav>
-
-    <main class="content">
-      <article class="panel">
-        {% if page.title %}<h1>{{ page.title }}</h1>{% endif %}
-        {% if page.subtitle %}<p class="muted">{{ page.subtitle }}</p>{% endif %}
-        {{ content }}
-      </article>
-    </main>
+  <!-- Access gate (deterrent only; shared password, client-side). -->
+  <div id="gate" class="gate" style="display:none">
+    <form id="gateForm" class="gate-box">
+      <h1>CSU Advanced Utilities — Data Governance</h1>
+      <p class="muted">This site is restricted. Enter the access password to continue.</p>
+      <input type="password" id="gatePwd" placeholder="Password" autocomplete="current-password" autofocus>
+      <button type="submit">Enter</button>
+      <p id="gateErr" class="gate-err" style="display:none">Incorrect password. Try again.</p>
+    </form>
   </div>
 
-  <!-- Mermaid: renders ```mermaid fenced blocks (used in Architecture & Lineage). -->
+  <div id="site" style="display:none">
+    <header class="topbar">
+      <a class="brand" href="{{ '/index.html' | relative_url }}">CSU Advanced Utilities — Data Governance</a>
+      <span class="brand-sub">Command Center meter-data program</span>
+    </header>
+
+    <div class="layout">
+      <nav class="sidebar" aria-label="Sections">
+        <ul>
+          {% for item in site.data.nav %}
+            {% if item.header %}
+              <li class="nav-header">{{ item.title }}</li>
+            {% elsif item.external %}
+              <li><a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.title }}</a></li>
+            {% else %}
+              <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} class="active"{% endif %}>{{ item.title }}</a></li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <main class="content">
+        <article class="panel">
+          {% if page.title %}<h1>{{ page.title }}</h1>{% endif %}
+          {% if page.subtitle %}<p class="muted">{{ page.subtitle }}</p>{% endif %}
+          {{ content }}
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <!-- Gate logic + Mermaid (Mermaid renders only after the site is revealed). -->
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
-    document.querySelectorAll("pre > code.language-mermaid").forEach((code) => {
-      const pre = code.parentElement;
-      const div = document.createElement("div");
-      div.className = "mermaid";
-      div.textContent = code.textContent;
-      pre.replaceWith(div);
+    mermaid.initialize({ startOnLoad: false, theme: "neutral" });
+
+    let mermaidRendered = false;
+    function renderMermaid() {
+      if (mermaidRendered) return;
+      mermaidRendered = true;
+      document.querySelectorAll("pre > code.language-mermaid").forEach((code) => {
+        const div = document.createElement("div");
+        div.className = "mermaid";
+        div.textContent = code.textContent;
+        code.parentElement.replaceWith(div);
+      });
+      if (document.querySelector(".mermaid")) mermaid.run();
+    }
+
+    const GATE_HASH = "{{ site.gate_hash }}";
+    const gate = document.getElementById("gate");
+    const site = document.getElementById("site");
+    const form = document.getElementById("gateForm");
+    const pwd  = document.getElementById("gatePwd");
+    const err  = document.getElementById("gateErr");
+
+    async function sha256hex(text) {
+      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+      return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+    }
+    function reveal() {
+      gate.style.display = "none";
+      site.style.display = "";
+      renderMermaid();
+    }
+
+    if (sessionStorage.getItem("csu_gate_ok") === "1") {
+      reveal();
+    } else {
+      gate.style.display = "";
+      pwd.focus();
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const h = await sha256hex(pwd.value);
+      if (h === GATE_HASH) {
+        sessionStorage.setItem("csu_gate_ok", "1");
+        reveal();
+      } else {
+        err.style.display = "block";
+        pwd.value = "";
+        pwd.focus();
+      }
     });
-    mermaid.initialize({ startOnLoad: true, theme: "neutral" });
   </script>
 </body>
 </html>
