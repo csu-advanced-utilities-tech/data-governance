@@ -91,10 +91,10 @@ For meters that stop reporting, the contract defines a concrete process we can m
 The **MMM exception report** is CSU's daily meter-monitoring scan: a set of coded rules that query
 Command Center data to flag meters with a data or device problem for investigation (and, where
 applicable, a work order). This register is the authoritative list of rules and their criteria.
-_TODO: confirm what "MMM" stands for and the report's owner/cadence._
+MMM is its own term (it does not stand for anything). _TODO: confirm the report's owner/cadence._
 
-**Common filters:** *not in inventory* = `statuscodeid` ≠ 1 · *has SPID* = endpoint has a
-collector/SPU association (i.e. on-network) · *dbsync* = the CIS DB-sync file (see
+**Common filters:** *not in inventory* = `statuscodeid` ≠ 1 · *has SPID* = the meter has a
+**Service Point ID** (provisioned and on the network) · *dbsync* = the CIS DB-sync file (see
 [OT/IT Landscape]({{ '/05-ot-it-landscape.html' | relative_url }})) · meter types: 1 = electric,
 2 = water, 3 = gas, 4 = unspecified, 5 = router. Event/data-definition IDs map to the
 [Data Dictionary](https://csu-advanced-utilities-tech.github.io/command-center-data-catalog/index.html).

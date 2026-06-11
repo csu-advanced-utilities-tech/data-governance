@@ -82,6 +82,17 @@ subtitle: The source documents behind this hub — a short summary of each, with
 ## Internal — authoritative source documents
 
 <div class="resource confidential">
+  <h3>Landis+Gyr — Command Center Data Extracts (white paper) <span class="badge draft">Confidential</span></h3>
+  <p class="meta">Landis+Gyr · 2018 · vendor white paper (proprietary &amp; confidential)</p>
+  <p>Explains how reads are extracted from Command Center — Conventional (once-a-day register / EMED),
+  Interval (once-a-day load profile / CMEP), and the Incremental Daily / Interval / Periodic extracts —
+  plus formats, scheduling, gap reconciliation, and on-demand reads.</p>
+  <p><strong>⚠️ Confidential — do not publish.</strong> Vendor-proprietary; not linked or stored on this
+  public site. The operational concepts are summarized in
+  <a href="{{ '/04-meter-data-lifecycle.html' | relative_url }}">Meter-Data Lifecycle</a>.</p>
+</div>
+
+<div class="resource confidential">
   <h3>CSU ↔ Landis+Gyr — AMI Master Agreement <span class="badge draft">Confidential</span></h3>
   <p class="meta">Colorado Springs Utilities &amp; Landis+Gyr Technology, Inc. · executed July 10, 2019 · 20-year term</p>
   <p>The contract governing our AMI program. It is the <strong>authoritative internal source</strong> for the

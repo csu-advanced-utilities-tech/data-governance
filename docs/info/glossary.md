@@ -63,10 +63,16 @@ subtitle: Technical and data terms used across this site, in plain English.
 | **CMEP** | Common Meter Export Protocol — a standard file format for exporting (AMR) interval meter data. |
 | **MultiSpeak / CIM** | Common utility data-exchange standards (MultiSpeak; Common Information Model) used as file/message formats between systems. |
 | **Scalar vs. interval read** | A scalar (register) read is a cumulative total (e.g., total kWh); an interval read is usage within a fixed window (e.g., 15 minutes). |
-| **MMM** | CSU's daily meter-monitoring exception report — coded rules (NVM, STL, DIV, etc.) that flag meters with data or device problems for investigation. See the [Data-Quality Framework]({{ '/08-data-quality-framework.html' | relative_url }}). *(Acronym to be confirmed.)* |
-| **SPID** | An endpoint's collector/SPU association; "has SPID" means the meter is assigned to a collector and on the network. *(Confirm exact meaning.)* |
+| **MMM** | CSU's daily meter-monitoring exception report — coded rules (NVM, STL, DIV, etc.) that flag meters with data or device problems for investigation. See the [Data-Quality Framework]({{ '/08-data-quality-framework.html' | relative_url }}). *(MMM is its own term; it does not stand for anything.)* |
+| **SPID (Service Point ID)** | The identifier of the service point a meter is provisioned to; "has SPID" means the meter is provisioned and on the network. |
 | **WOP (In Work Order Process)** | Flag on an MMM rule indicating it is active in production and can generate a work order. |
 | **dbsync** | The CIS DB-sync file — customer/meter data synced from the Customer Information System; some MMM rules cross-check it. |
 | **DIV** | The MMM theft-detection rule: flags disconnected meters still drawing load-side voltage, or "no-usage" meters that suddenly read — replacing the older ECO rule. |
+| **EMED (Every Meter Every Day)** | A Landis+Gyr file format (and loosely, the once-a-day register-reads extract) carrying daily register/consumption reads for billing. |
+| **Conventional Extract** | The once-a-day extract that pulls register/consumption (scalar) reads from Command Center; commonly uses the EMED format. |
+| **Incremental Extract** | An extract that runs frequently (e.g., every 2 hours) and pulls only rows logged since the last run — smaller, faster files; the preferred method at scale, intended to replace the once-a-day extracts. |
+| **Load Profile (LP)** | Interval usage calculated in the meter (this interval's read minus the prior one), pushed periodically; carried by the interval / CMEP extracts. |
+| **ODR / DR-ODR** | On-Demand Read / Demand-Reset On-Demand Read — extra reads taken on request; can create duplicate rows the MDMS must handle. |
+| **Gap Reconciliation** | Command Center's back-fill of missing reads; late records arrive hours or days later and flow through the incremental extracts. |
 
 Missing a term? Add it via [How to Contribute]({{ '/info/contributing.html' | relative_url }}) or open an Issue.

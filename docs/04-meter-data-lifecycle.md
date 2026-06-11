@@ -46,6 +46,38 @@ sit on top of them.
   [OT/IT Landscape]({{ '/05-ot-it-landscape.html' | relative_url }})). Targets are tracked as
   [KPIs]({{ '/13-kpis.html' | relative_url }}).
 
+## Data extract methods (Command Center → downstream)
+
+Reads must be **pulled out of Command Center** into files for CSU's MDMS, billing, and the
+[Consumer Portal]({{ '/10-architecture-lineage.html' | relative_url }}). Landis+Gyr provides several
+extract methods (per the L+G *Command Center Data Extracts* white paper). **Incremental** methods are
+preferred at scale — smaller, more frequent files — and are intended to replace the once-a-day versions.
+
+| Extract method | Data it returns | Default format(s) | Frequency |
+|---|---|---|---|
+| Conventional (Daily Register Reads) | Daily register / consumption (scalar) reads | EMED (also ATS, Daffron, NISC, SEDC, custom) | Once a day |
+| Interval (Load Profile) | Daily load-profile / interval reads | Standard / Enhanced **CMEP**, HHF | Once a day |
+| Incremental Daily Reads | Register reads, by DB-log time (delta since last run) | Incremental Meter Data Template A (EMED) / B | Scheduled (default ~2 hrs) |
+| Incremental Interval | Load-profile reads, by DB-log time (delta) | Standard / Enhanced **CMEP**, CIM XML | Scheduled (default ~2 hrs) |
+| Incremental Periodic Reads | C&amp;I gas periodic (hourly) reads | Enhanced CMEP (gas) | Scheduled (hourly) |
+
+> **How this maps to the schedule below:** "AMI EGW Interval File" and "CMEP (AMR Interval)" jobs are
+> **Incremental Interval** extracts; "Electric/EG/W Scalar" and "Daily Reads (AMR Scalar)" are
+> **register-reads** extracts (EMED); "CM-AMRLSF" is a load/scalar file.
+
+**Operational notes that affect data quality:**
+
+- **Don't run once-a-day and incremental for the same data** — pick one; incremental gives smaller files
+  for tight downstream SLAs.
+- **Time zone:** extracts output **Local or UTC** (an org-level setting) — downstream systems must agree.
+- **On-Demand / Demand-Reset reads (ODR / DR-ODR)** can add extra reads → **duplicate rows** the MDMS
+  must de-duplicate (same meter/day, different timestamps).
+- **Gap reconciliation:** back-filled reads can arrive hours or days late and flow through incremental
+  extracts as **non-contiguous records** — receiving systems must handle out-of-order data.
+- **Lookback** (incremental daily): default 0 (today from midnight), **max 2 days**; for longer gaps use
+  the once-a-day Conventional extract instead.
+- **Blackout window / offset-minutes** control exactly when files are written.
+
 ## Daily file-extract &amp; transfer schedule
 
 Reads and billing files are pulled from Command Center / the AMI head end on an automated daily
@@ -89,6 +121,7 @@ below is from the file-transfer scheduler; statuses are a sample run (they reset
 ---
 
 ### Source references
+- **Landis+Gyr — Command Center Data Extracts** white paper (2018) — extract methods, formats, scheduling _(confidential; see [Resources]({{ '/info/resources.html' | relative_url }}))_.
 - EPA, *AMI System Requirements Specification & Guidance* (2021) — meter-data handling & VEE expectations.
 - DOE, *Leveraging AMI Networks and Data* (2019) — operational use of AMI data across the lifecycle.
 - NREL, *AMI Data Management* (fy22osti/83877) — storage and MDM practices.
