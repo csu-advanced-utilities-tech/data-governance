@@ -7,7 +7,46 @@ subtitle: Text-based (Mermaid) architecture and data-lineage diagrams.
 <span class="badge draft">Draft</span>
 
 > Diagrams here are **text-based** (Mermaid) so they version-control cleanly and render
-> automatically on the site. Edit the fenced ` ```mermaid ` blocks below.
+> automatically on the site. **Tip: click any diagram to enlarge it.** Edit the fenced
+> ` ```mermaid ` blocks below.
+
+## End-to-end process flow (endpoint → C2M billing)
+
+The high-level path a meter read travels from the field to a customer bill. Color bands show who owns
+each stage. **Click the diagram to enlarge it.**
+
+```mermaid
+flowchart LR
+  M["Meter<br/>register / usage read taken"]
+  EP["Endpoint / module<br/>captures the read"]
+  MESH["RF mesh network<br/>Gridstream / Wi-SUN (self-healing)"]
+  GW["Routers and gateway<br/>aggregate and backhaul"]
+  HES["Head-End System = Command Center<br/>receives and stores reads"]
+  FF["Command Center<br/>generates flat files (EMED / CMEP)"]
+  SFTP["SFTP transfer<br/>Secure FTP, port 22"]
+  C2M["CSU loads into C2M<br/>MDM + VEE (Oracle Customer To Meter)"]
+  BILL["Billing"]
+
+  M --> EP --> MESH --> GW --> HES --> FF --> SFTP --> C2M --> BILL
+
+  classDef field fill:#eff6ff,stroke:#2563eb,color:#111827;
+  classDef net   fill:#ecfeff,stroke:#0891b2,color:#111827;
+  classDef lg    fill:#ecfdf5,stroke:#059669,color:#111827;
+  classDef xfer  fill:#fffbeb,stroke:#b45309,color:#111827;
+  classDef csu   fill:#eef2ff,stroke:#4338ca,color:#111827;
+
+  class M,EP field;
+  class MESH,GW net;
+  class HES,FF lg;
+  class SFTP xfer;
+  class C2M,BILL csu;
+```
+
+**Legend:** blue = field (meter / endpoint) · teal = AMI network (Gridstream / Wi-SUN mesh, routers,
+gateway) · green = Landis+Gyr head-end (Command Center) · amber = file transfer (SFTP) · indigo = CSU
+(C2M). **C2M** (Oracle Customer To Meter) is a single system whose **SGG** ingests the files, **MDM**
+validates and stores them (VEE), and **CC&B** produces the bill. For the detailed system view and the
+Consumer-Portal feed, see the diagrams below.
 
 ## High-level data flow
 

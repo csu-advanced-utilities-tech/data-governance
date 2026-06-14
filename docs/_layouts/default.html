@@ -50,6 +50,12 @@
     </div>
   </div>
 
+  <!-- Diagram zoom modal: click any diagram to enlarge. -->
+  <div id="diagramModal" class="diagram-modal" style="display:none">
+    <button id="diagramModalClose" class="diagram-modal-close" aria-label="Close">&times;</button>
+    <div id="diagramModalBody" class="diagram-modal-body"></div>
+  </div>
+
   <!-- Gate logic + Mermaid (Mermaid renders only after the site is revealed). -->
   <script type="module">
     import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
@@ -65,8 +71,37 @@
         div.textContent = code.textContent;
         code.parentElement.replaceWith(div);
       });
-      if (document.querySelector(".mermaid")) mermaid.run();
+      if (document.querySelector(".mermaid")) {
+        mermaid.run().then(attachZoom).catch(() => attachZoom());
+      }
     }
+
+    function attachZoom() {
+      const modal = document.getElementById("diagramModal");
+      const body  = document.getElementById("diagramModalBody");
+      if (!modal || !body) return;
+      document.querySelectorAll(".mermaid").forEach((el) => {
+        if (el.dataset.zoomReady) return;
+        el.dataset.zoomReady = "1";
+        el.classList.add("zoomable");
+        el.title = "Click to enlarge";
+        el.addEventListener("click", () => {
+          body.innerHTML = el.innerHTML;
+          const svg = body.querySelector("svg");
+          if (svg) { svg.removeAttribute("height"); svg.style.maxWidth = "none"; svg.style.width = "100%"; svg.style.height = "auto"; }
+          modal.style.display = "flex";
+        });
+      });
+    }
+
+    // Diagram modal close handlers
+    const diagModal = document.getElementById("diagramModal");
+    function closeDiagram() {
+      if (diagModal) { diagModal.style.display = "none"; document.getElementById("diagramModalBody").innerHTML = ""; }
+    }
+    document.getElementById("diagramModalClose")?.addEventListener("click", closeDiagram);
+    diagModal?.addEventListener("click", (e) => { if (e.target === diagModal) closeDiagram(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeDiagram(); });
 
     const GATE_HASH = "{{ site.gate_hash }}";
     const gate = document.getElementById("gate");

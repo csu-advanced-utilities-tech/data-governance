@@ -41,7 +41,8 @@ subtitle: Technical and data terms used across this site, in plain English.
 | **Gridstream** | Landis+Gyr's AMI communications network (the radio-frequency mesh, often using the Wi-SUN standard) that carries data between meters and the head-end. |
 | **Wi-SUN** | An open wireless standard for utility field-area networks; the radio protocol the AMI mesh uses to backhaul meter data. |
 | **Endpoint / Meter / Collector** | The field devices: meters measure usage, endpoints communicate, collectors/routers/gateways relay the data back to the head-end. |
-| **MDMS (Meter Data Management System)** | CSU's system that stores and manages validated meter reads and produces billing determinants; it receives data from the head-end via the Smart Grid Gateway. |
+| **MDMS (Meter Data Management System)** | The system that stores and manages validated meter reads and produces billing determinants. For CSU this is the **MDM inside C2M**. |
+| **C2M (Oracle Customer To Meter)** | CSU's customer/billing platform — a single Oracle system that combines **SGG** (Smart Grid Gateway / ingest), **MDM** (Meter Data Management + VEE), and **CC&B** (Customer Care & Billing). The SFTP flat files from Command Center are loaded here for billing. |
 | **Smart Grid Gateway** | CSU's integration layer that receives meter data from the Command Center head-end and feeds it into CSU systems (e.g. the MDMS). |
 | **SLA (Service Level Agreement)** | A contracted performance commitment (e.g. "99.5% of billing reads delivered on time"), often with service credits if missed. Our SLAs live in the Master Agreement. |
 | **CORA** | Colorado Open Records Act — the public-records law CSU is subject to, which shapes how confidential contract and customer information is handled. |
